@@ -1,0 +1,47 @@
+{
+  "name": "web-app-builder",
+  "description": "Gulp build web application with bootstrap",
+  "main": "",
+  "authors": [
+    "Anton Zhyravlev <zhyravlev.as@gmail.com>"
+  ],
+  "license": "GNU",
+  "keywords": [
+    "gulp",
+    "webapp",
+    "bootstrap"
+  ],
+  "homepage": "https://github.com/ZhyravlevAS/Web-App-Builder",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.1",
+    "modernizr": "~2.8.1",
+    "bootstrap-sass": "~3.3.5",
+    "font-awesome": "^4.5.0"
+  },
+  "overrides": {
+    "bootstrap-sass": {
+      "main": [
+        "../../app/styles/components/bootstrap.scss",
+        "assets/javascripts/bootstrap.js"
+      ]
+    },
+    "font-awesome": {
+      "main": [
+        "scss/font-awesome.scss",
+        "fonts/fontawesome-webfont.eot",
+        "fonts/fontawesome-webfont.svg",
+        "fonts/fontawesome-webfont.ttf",
+        "fonts/fontawesome-webfont.woff",
+        "fonts/fontawesome-webfont.woff2"
+      ]
+    }
+  }
+}
