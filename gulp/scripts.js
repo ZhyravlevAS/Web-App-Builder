@@ -17,6 +17,13 @@ gulp.task('scripts', function () {
 });
 
 var buildScripts = function () {
-  return gulp.src(path.join(conf.paths.src, '/js/*.js'))
+  return gulp.src(path.join(conf.paths.src, '/**/*.js'))
+    .pipe($.order([
+      "index.js",
+      "**/*.js"
+    ]))
+    .pipe($.environments.production($.sourcemaps.init()))
+    .pipe($.concat('app.js'))
+    .pipe($.environments.production($.sourcemaps.write('../map')))
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/js')));
 };

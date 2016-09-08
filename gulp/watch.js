@@ -31,11 +31,5 @@ gulp.task('watch', ['inject'], function () {
     }
   });
 
-  gulp.watch(path.join(conf.paths.src, '/*.html'), function (event) {
-
-    gulp.src(event.path)
-      .pipe(gulp.dest(conf.paths.tmp));
-
-    return browserSync.reload();
-  });
+  gulp.watch([path.join(conf.paths.src, '/**/*.twig')], ['twig-reload']);
 });

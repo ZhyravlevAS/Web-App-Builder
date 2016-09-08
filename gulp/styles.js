@@ -12,12 +12,17 @@ gulp.task('styles', function () {
 
 var buildStyles = function () {
 
-  var bowerFiles = require('main-bower-files')('**/*.{sass,scss}');
+  var files = require('main-bower-files')('**/*.{sass,scss}');
+  files.push(path.join(conf.paths.src, '/components/**/*.{sass,scss}'));
 
-  var injectFiles = gulp.src(bowerFiles, {read: false});
+  var injectFiles = gulp.src(files, {read: false});
 
   var injectOptions = {
     transform: function (filePath) {
+      if(/(\/components\/)/.test(filePath)){
+        return '@import "../../' + filePath + '";';
+      }
+
       filePath = filePath.replace(conf.paths.src + '/', '');
       return '@import "' + filePath + '";';
     },
@@ -34,10 +39,10 @@ var buildStyles = function () {
 
   return gulp.src(path.join(conf.paths.src, '/sass/style.scss'))
     .pipe($.inject(injectFiles, injectOptions))
-    .pipe($.sourcemaps.init())
+    .pipe($.environments.production($.sourcemaps.init()))
     .pipe($.sass.sync(sassOptions).on('error', $.sass.logError))
     .pipe($.autoprefixer(conf.autoprefixerOptions))
     .pipe($.shorthand())
-    .pipe($.sourcemaps.write('../map'))
+    .pipe($.environments.production($.sourcemaps.write('../map')))
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/css')));
 };

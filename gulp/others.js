@@ -7,12 +7,6 @@ var $ = require('gulp-load-plugins')();
 
 var conf = require('./conf');
 
-gulp.task('html', function () {
-  return gulp.src(path.join(conf.paths.src, '/**/*.html'))
-    .pipe($.useref({searchPath: ['.']}))
-    .pipe(gulp.dest(conf.paths.dist));
-});
-
 gulp.task('fonts', function () {
   var source = require('main-bower-files')('**/*.{eot,svg,ttf,woff,woff2}', function (err) {
   })
@@ -36,11 +30,8 @@ gulp.task('map', function () {
 gulp.task('extras', function () {
   return gulp.src([
     'src/*.*',
-    '!src/sass/**/*',
-    '!src/js/**/*',
-    '!src/fonts/**/*',
-    '!src/images/**/*',
-    '!src/*.html'
+    '!src/*.twig',
+    '!src/*.js'
   ], {
     dot: true
   }).pipe(gulp.dest('dist'));

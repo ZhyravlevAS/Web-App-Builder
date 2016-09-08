@@ -13,9 +13,9 @@ gulp.task('inject-reload', ['inject'], function () {
   return browserSync.reload();
 });
 
-gulp.task('inject', ['styles', 'scripts', 'fonts'], function () {
+gulp.task('inject', ['styles', 'scripts', 'fonts', 'twig'], function () {
 
-  var injectTo = path.join(conf.paths.src, '/*.html');
+  var injectTo = path.join(conf.paths.src, '/*.twig');
 
   var injectFiles = gulp.src(
     [
@@ -37,6 +37,5 @@ gulp.task('inject', ['styles', 'scripts', 'fonts'], function () {
   return gulp.src(injectTo)
     .pipe($.inject(injectFiles, injectOptions))
     .pipe(wiredep(_.extend({}, wiredepOptions)))
-    .pipe(gulp.dest(conf.paths.src))
-    .pipe(gulp.dest(conf.paths.tmp));
+    .pipe(gulp.dest(conf.paths.src));
 });
