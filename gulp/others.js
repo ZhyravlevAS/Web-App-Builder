@@ -40,18 +40,40 @@ gulp.task('extras', function () {
 gulp.task('scripts-min', function () {
   return gulp.src(path.join(conf.paths.dist, '/js/*.js'))
     .pipe($.uglify())
-    .pipe($.rename(function (path) {
-      path.basename += '.min';
-    }))
+
+    // Uncomment for create reduced files together with source.
+    // Then rename comments like this:
+    //    <!-- build:js js/plugins.min.js -->
+    //    <!-- build:js js/bootstrap.min.js -->
+    //    <!-- build:js js/app.min.js -->
+    // To:
+    //    <!-- build:js js/plugins.js -->
+    //    <!-- build:js js/bootstrap.js -->
+    //    <!-- build:js js/app.js -->
+
+    // .pipe($.rename(function (path) {
+    //   path.basename += '.min';
+    // }))
+
     .pipe(gulp.dest(path.join(conf.paths.dist, '/js')));
 });
 
 gulp.task('styles-min', function () {
   return gulp.src(path.join(conf.paths.dist, '/css/*.css'))
     .pipe($.csso())
-    .pipe($.rename(function (path) {
-      path.basename += '.min';
-    }))
+
+    // Uncomment for create reduced files together with source.
+    // Then rename comments like this:
+    //    <!-- build:css css/plugins.min.css -->
+    //    <!-- build:css css/style.min.css -->
+    // To:
+    //    <!-- build:css css/plugins.css -->
+    //    <!-- build:css css/style.css -->
+
+    // .pipe($.rename(function (path) {
+    //   path.basename += '.min';
+    // }))
+
     .pipe(gulp.dest(path.join(conf.paths.dist, '/css')));
 });
 

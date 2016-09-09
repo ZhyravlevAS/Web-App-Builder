@@ -12,13 +12,13 @@ $ npm install && bower install
 ## For run development server
 
 ```bash
-$ git serve
+$ gulp serve --env development
 ```
 
 ## Run build of application
 
 ```bash
-$ git build --env production
+$ gulp build --env production
 ```
 
 ## On board

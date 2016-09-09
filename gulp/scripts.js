@@ -22,8 +22,8 @@ var buildScripts = function () {
       "index.js",
       "**/*.js"
     ]))
-    .pipe($.environments.production($.sourcemaps.init()))
+    .pipe($.environments.development($.sourcemaps.init()))
     .pipe($.concat('app.js'))
-    .pipe($.environments.production($.sourcemaps.write('../map')))
+    .pipe($.environments.development($.sourcemaps.write('../map')))
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/js')));
 };

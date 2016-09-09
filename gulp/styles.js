@@ -39,10 +39,10 @@ var buildStyles = function () {
 
   return gulp.src(path.join(conf.paths.src, '/sass/style.scss'))
     .pipe($.inject(injectFiles, injectOptions))
-    .pipe($.environments.production($.sourcemaps.init()))
+    .pipe($.environments.development($.sourcemaps.init()))
     .pipe($.sass.sync(sassOptions).on('error', $.sass.logError))
     .pipe($.autoprefixer(conf.autoprefixerOptions))
     .pipe($.shorthand())
-    .pipe($.environments.production($.sourcemaps.write('../map')))
+    .pipe($.environments.development($.sourcemaps.write('../map')))
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/css')));
 };
