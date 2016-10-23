@@ -3,7 +3,8 @@
 exports.paths = {
   src: 'src',
   dist: 'dist',
-  tmp: '.tmp'
+  tmp: '.tmp',
+  fixture: 'fixtures'
 };
 
 exports.autoprefixerOptions = {

@@ -3,6 +3,7 @@
 var path = require('path');
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
+var proxy = require('http-proxy-middleware');
 var util = require('util');
 
 var conf = require('./conf');
@@ -27,6 +28,13 @@ function browserSyncInit(baseDir, browser) {
   var ui = {
     port: 3002
   };
+
+  var apiProxy = proxy('/api', {
+    target: 'http://localhost:3003',
+    changeOrigin: true
+  });
+
+  server.middleware = [apiProxy];
 
   browserSync.instance = browserSync.init({
     startPath: '/',

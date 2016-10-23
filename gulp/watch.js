@@ -11,7 +11,7 @@ function isOnlyChange(event) {
   return event.type === 'changed';
 }
 
-gulp.task('watch', ['inject'], function () {
+gulp.task('watch', ['inject', 'fixture:run'], function () {
 
   gulp.watch(['bower.json'], ['inject-reload', 'fonts']);
 
@@ -31,5 +31,6 @@ gulp.task('watch', ['inject'], function () {
     }
   });
 
-  gulp.watch([path.join(conf.paths.src, '/**/*.twig')], ['twig-reload']);
+  gulp.watch(path.join(conf.paths.src, '/**/*.twig'), ['twig-reload']);
+  gulp.watch(path.join(conf.paths.fixture, '/**/*.js'), ['fixture:run']);
 });
